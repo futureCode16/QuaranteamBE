@@ -1,12 +1,12 @@
 <template>
-  <v-navigation-drawer v-model="drawer" elevation="5" permanent absolute>
+  <v-navigation-drawer elevation="5" permanent absolute app style="border-right: 2px solid #0099ff">
     <br>
-    <br>
-    <br>
+    <!-- <br>
+    <br>-->
     <v-spacer/>
     <v-col>
       <v-avatar size="225">
-        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+        <img :src="require('@/assets/admin-icon.png')" alt="Admin">
       </v-avatar>
       <v-list-item>
         <v-list-item-content class="text-center">
@@ -16,36 +16,26 @@
       </v-list-item>
     </v-col>
     <v-divider></v-divider>
-    <v-expansion-panels inset>
+    <v-expansion-panels focusable inset hover>
       <v-expansion-panel
-        v-for="item in items"
-        :key="item.title"
-        active-class="blue darken-2 white--text text--accent-4"
+        v-for="(nav,i) in navigations"
+        :key="i"
+        active-class="orange darken-1 white--text text--accent-4"
       >
-        <v-expansion-panel-header>{{item.title}}</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-btn text color="white">Create Tasking</v-btn>
-          <v-btn text color="white">View Tasking</v-btn>
+        <v-expansion-panel-header>{{nav.title}}</v-expansion-panel-header>
+        <v-expansion-panel-content
+          v-for="method in nav.methods"
+          v-bind:key="method.task"
+          style="margin-top:-5%;"
+        >
+          <br>
+          <v-btn text small>
+            <v-icon>{{ method.icon }}</v-icon>
+            {{method.task}}
+          </v-btn>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <!-- <v-list nav dense>
-      <v-divider></v-divider>
-      <v-list-item
-        active-class="blue darken-2 white--text text--accent-4"
-        v-for="item in items"
-        :key="item.title"
-        :to="item.link"
-        @click.stop="drawer = !drawer"
-      >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>-->
   </v-navigation-drawer>
 </template>
 
@@ -55,31 +45,73 @@
 
 <script>
 export default {
+  name: "Sidebar",
   data() {
     return {
-      items: [
+      navigations: [
+        {
+          title: "Students",
+          methods: [
+            {
+              icon: "mdi-account",
+              task: "1st year Students"
+            },
+            {
+              icon: "mdi-account",
+              task: "2nd year Students"
+            },
+            {
+              icon: "mdi-account",
+              task: "3rd year Students"
+            }
+          ],
+          link: "/dashboard"
+        },
         {
           title: "Student Tasking",
-          icon: "mdi-food",
+          methods: [
+            {
+              icon: "mdi-eye",
+              task: "View tasking"
+            }
+          ],
           link: "/dashboard"
         },
         {
           title: "Student Concerns  ",
-          icon: "mdi-dropbox",
+          methods: [
+            {
+              icon: "mdi-comment-text-outline",
+              task: "Concerns"
+            }
+          ],
           link: "/orders"
         },
         {
           title: "Student Body Officer",
-          icon: "mdi-share",
+          methods: [
+            {
+              icon: "mdi-account",
+              task: "PN-SBO"
+            },
+            {
+              icon: "mdi-account-star",
+              task: "Election"
+            }
+          ],
           link: "/facts"
         },
         {
           title: "PN Rules ",
-          icon: "mdi-share",
+          methods: [
+            {
+              icon: "mdi-lightbulb-outline",
+              task: "Rules"
+            }
+          ],
           link: "/test"
         }
-      ],
-      drawer: false
+      ]
     };
   }
 };

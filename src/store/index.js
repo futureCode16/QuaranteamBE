@@ -6,13 +6,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-      
+        name: "",
+        position: "",
     },
     getters: {
         
     },
     mutations: {
-        
+
     },
     actions: {
 

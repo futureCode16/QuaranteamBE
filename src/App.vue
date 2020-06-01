@@ -11,16 +11,13 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld';
-import Header from './components/Frame/Header.vue'
+import Header from "./components/Frame/Header.vue";
 import Body from "./components/Frame/Body.vue";
 import Sidebar from "./components/Frame/Sidebar.vue";
 // import Cover from "./components/Frame/Cover.vue";
 
-
-
 export default {
-  name: 'App',
-
+  name: "App",
   components: {
     Sidebar,
     // Cover,
@@ -30,6 +27,6 @@ export default {
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>

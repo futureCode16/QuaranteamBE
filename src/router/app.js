@@ -2,9 +2,17 @@ export default {
 
     routes: [
         {
-            path: '/portal',
-            name: 'portal',
-            component: resolve => require(['@/components/Modules/Portal.vue'], resolve),
+            path: '/studenttask',
+            name: 'studenttask',
+            component: resolve => require(['@/components/Modules/Admin/Tasking.vue'], resolve),
+            meta: {
+                tokenRequired: false
+            }
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: resolve => require(['@/components/Modules/Admin/test.vue'], resolve),
             meta: {
                 tokenRequired: false
             }
