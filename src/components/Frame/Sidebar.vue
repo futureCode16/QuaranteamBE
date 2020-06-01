@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer elevation="5" permanent absolute app style="border-right: 2px solid #0099ff">
+  <v-navigation-drawer elevation="5" permanent app style="border-right: 2px solid #0099ff">
     <br>
     <!-- <br>
     <br>-->

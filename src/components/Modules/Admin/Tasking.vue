@@ -1,21 +1,23 @@
 <template>
-  <div app>
+  <div>
     <v-item-group>
       <v-container>
         <v-row>
           <v-col v-for="task in tasks" :key="task.tasking" cols="12" md="4">
-            <v-item>
+            <v-item >
               <TaskingCard :TaskDetails="task"></TaskingCard>
             </v-item>
           </v-col>
         </v-row>
       </v-container>
     </v-item-group>
+    <AddTask/>
   </div>
 </template>
 
 <script>
 import TaskingCard from "@/components/Cards/TaskingCard.vue";
+import AddTask from "@/components/Modals/AddTask.vue"
 
 export default {
   name: "studenttasking",
@@ -96,7 +98,8 @@ export default {
     };
   },
   components: {
-    TaskingCard
+    TaskingCard,
+    AddTask
   },
   methods: {}
 };
