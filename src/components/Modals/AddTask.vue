@@ -14,15 +14,23 @@
               menu-props="auto"
               label="Number of students"
               hide-details
-              :prepend-icon="'mdi-pound'"
+              :prepend-icon="'mdi-pound-box'"
               single-line
-            ></v-select>
+            ></v-select><br>
             <v-select
               :items="difficulty"
               menu-props="auto"
               label="Difficulty"
               hide-details
               :prepend-icon="'mdi-gavel'"
+              single-line
+            ></v-select><br>
+            <v-select
+              :items="center"
+              menu-props="auto"
+              label="Location"
+              hide-details
+              :prepend-icon="'mdi-map-marker-radius'"
               single-line
             ></v-select>
           </v-form>
@@ -56,7 +64,8 @@ export default {
         "11",
         "12"
       ],
-      difficulty: ["Light", "Hard"]
+      difficulty: ["Light", "Hard"],
+      center: ["Center 1", "Center 2"]
     };
   },
   mounted() {

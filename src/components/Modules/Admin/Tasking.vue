@@ -12,12 +12,15 @@
       </v-container>
     </v-item-group>
     <AddTask/>
+    <Buttons />
   </div>
 </template>
 
 <script>
 import TaskingCard from "@/components/Cards/TaskingCard.vue";
 import AddTask from "@/components/Modals/AddTask.vue"
+import Buttons from "@/components/Buttons/FabSpeedDial.vue";
+
 
 export default {
   name: "studenttasking",
@@ -99,8 +102,10 @@ export default {
   },
   components: {
     TaskingCard,
-    AddTask
+    AddTask,
+    Buttons
   },
   methods: {}
 };
 </script>
+

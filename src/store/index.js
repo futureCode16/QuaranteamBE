@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import http from 'axios'
+import http from 'vue-axios'
 
 Vue.use(Vuex);
 
@@ -47,7 +47,7 @@ export default new Vuex.Store({
                     commit("addTask", res)
                     resolve()
                 }).catch(err => {
-                    reject()
+                    reject(err)
                 })
             })
         },
@@ -57,7 +57,7 @@ export default new Vuex.Store({
                     commit("removeTask", res)
                     resolve()
                 }).catch(err => {
-                    reject()
+                    reject(err)
                 })
             })
         },

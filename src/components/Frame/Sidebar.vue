@@ -29,7 +29,7 @@
           style="margin-top:-5%;"
         >
           <br>
-          <v-btn text small>
+          <v-btn text small >
             <v-icon>{{ method.icon }}</v-icon>
             {{method.task}}
           </v-btn>
@@ -53,15 +53,15 @@ export default {
           title: "Students",
           methods: [
             {
-              icon: "mdi-account",
+              icon: "mdi-account-circle",
               task: "1st year Students"
             },
             {
-              icon: "mdi-account",
+              icon: "mdi-account-circle",
               task: "2nd year Students"
             },
             {
-              icon: "mdi-account",
+              icon: "mdi-account-circle",
               task: "3rd year Students"
             }
           ],
