@@ -8,7 +8,78 @@ export default new Vuex.Store({
     state: {
         name: "",
         position: "",
-        tasks: [],
+        tasks: [
+            {
+                tasking: "Dishwashing",
+                coordinator: "Rangie Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna",
+                ]
+            },
+            {
+                tasking: "Kitchen",
+                coordinator: "James Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            },
+            {
+                tasking: "Dining",
+                coordinator: "John Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            },
+            {
+                tasking: "Back Garden",
+                coordinator: "Jay Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            },
+            {
+                tasking: "Front Garden",
+                coordinator: "Jay Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            },
+            {
+                tasking: "Courtyard",
+                coordinator: "Jay Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            },
+            {
+                tasking: "Hallway and Corridor",
+                coordinator: "Jay Laurente",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                    "John Louie Bersaluna"
+                ]
+            }
+        ],
     },
     getters: {
         getTasks: state => {
@@ -31,6 +102,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        // Getting the new generated task
         GetTasks({ commit }) {
             return new Promise((resolve, reject) => {
                 http.get("url_from_backend/getTasks").then(res => {
@@ -41,6 +113,7 @@ export default new Vuex.Store({
                 })
             })
         },
+        // Add some new task
         AddTask({ commit, task }) {
             return new Promise((resolve, reject) => {
                 http.post("url_from_backend/addTask", task).then(res => {
@@ -51,6 +124,7 @@ export default new Vuex.Store({
                 })
             })
         },
+        // Remove the task 
         RemoveTask({ commit, task }) {
             return new Promise((resolve, reject) => {
                 http.delete("url_from_backend/deleteTask/:id", task).then(res => {
@@ -61,8 +135,8 @@ export default new Vuex.Store({
                 })
             })
         },
-        EditTask(){
-            
+        EditTask() {
+
         }
     }
 })

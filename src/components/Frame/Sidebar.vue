@@ -71,8 +71,12 @@ export default {
           title: "Student Tasking",
           methods: [
             {
-              icon: "mdi-eye",
-              task: "View tasking"
+              icon: "mdi-home-modern",
+              task: "Center 1"
+            },
+            {
+              icon: "mdi-home-variant",
+              task: "Center 2"
             }
           ],
           link: "/dashboard"

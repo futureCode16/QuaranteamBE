@@ -12,7 +12,7 @@ export default {
         {
             path: '/test',
             name: 'test',
-            component: resolve => require(['@/components/Buttons/FabSpeedDial.vue'], resolve),
+            component: resolve => require(['@/components/Modules/Admin/SkeletonLoader.vue'], resolve),
             meta: {
                 tokenRequired: false
             }

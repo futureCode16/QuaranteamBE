@@ -44,7 +44,7 @@
       </v-tooltip>
       <v-tooltip left>
         <template v-slot:activator="{ on}">
-          <v-btn fab dark small color="orange" v-on="on">
+          <v-btn fab dark small color="orange" v-on="on" @click="GenerateNewTask">
             <v-icon>mdi-shuffle</v-icon>
           </v-btn>
         </template>
@@ -131,6 +131,9 @@ export default {
         this.$bus.$emit("clicked-edit-btn", false);
         this.edit = false;
       }
+    },
+    GenerateNewTask() {
+      this.$bus.$emit("shuffle", true);
     }
   }
 };
