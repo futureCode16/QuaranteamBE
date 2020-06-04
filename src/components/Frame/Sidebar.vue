@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer elevation="5" permanent absolute app style="border-right: 2px solid #0099ff">
+  <v-navigation-drawer elevation="5" permanent app style="border-right: 2px solid #0099ff">
     <br>
     <!-- <br>
     <br>-->
@@ -16,26 +16,35 @@
       </v-list-item>
     </v-col>
     <v-divider></v-divider>
-    <v-expansion-panels focusable inset hover>
-      <v-expansion-panel
-        v-for="(nav,i) in navigations"
-        :key="i"
-        active-class="orange darken-1 white--text text--accent-4"
-      >
-        <v-expansion-panel-header>{{nav.title}}</v-expansion-panel-header>
-        <v-expansion-panel-content
-          v-for="method in nav.methods"
-          v-bind:key="method.task"
-          style="margin-top:-5%;"
+    <v-list>
+      <v-expansion-panels focusable inset hover>
+        <v-expansion-panel
+          v-for="(nav,i) in navigations"
+          :key="i"
+          active-class="orange darken-1 white--text text--accent-4"
         >
-          <br>
-          <v-btn text small>
-            <v-icon>{{ method.icon }}</v-icon>
-            {{method.task}}
-          </v-btn>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+          <v-expansion-panel-header disable-icon-rotate>
+            {{nav.title}}
+            <template v-slot:actions>
+              <v-icon color="#0099ff">{{nav.headericon}}</v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content
+            v-for="method in nav.methods"
+            v-bind:key="method.task"
+            style="margin-top:-3%;"
+          >
+            <br>
+            <router-link :to="`${method.link}`" style="text-decoration: none">
+              <v-btn text small>
+                <v-icon>{{ method.icon }}</v-icon>
+                {{method.task}}
+              </v-btn>
+            </router-link>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -53,63 +62,81 @@ export default {
           title: "Students",
           methods: [
             {
-              icon: "mdi-account",
-              task: "1st year Students"
+              icon: "mdi-account-circle",
+              task: "1st year Students",
+              link: "/1styrstudents"
             },
             {
-              icon: "mdi-account",
-              task: "2nd year Students"
+              icon: "mdi-account-circle",
+              task: "2nd year Students",
+              link: "/2ndyrstudents"
             },
             {
-              icon: "mdi-account",
-              task: "3rd year Students"
+              icon: "mdi-account-circle",
+              task: "3rd year Students",
+              link: "/3rdyrstudents"
             }
           ],
-          link: "/dashboard"
+          headericon: "mdi-account-multiple-outline"
         },
         {
           title: "Student Tasking",
           methods: [
             {
-              icon: "mdi-eye",
-              task: "View tasking"
+              icon: "mdi-home-modern",
+              task: "Center 1",
+              link: "/center1tasks"
+            },
+            {
+              icon: "mdi-home-variant",
+              task: "Center 2",
+              link: "/center2tasks"
+            },
+            {
+              icon: "mdi-clipboard-text",
+              task: "Center Tasking",
+              link: "/centertasks"
             }
           ],
-          link: "/dashboard"
+          headericon: "mdi-flag-variant-outline"
         },
         {
           title: "Student Concerns  ",
           methods: [
             {
               icon: "mdi-comment-text-outline",
-              task: "Concerns"
+              task: "Concerns",
+              link: "/studentconcerns"
             }
           ],
-          link: "/orders"
+          headericon: "mdi-telegram"
         },
         {
           title: "Student Body Officer",
           methods: [
             {
               icon: "mdi-account",
-              task: "PN-SBO"
+              task: "PN-SBO",
+              link: "/pnsbo"
             },
             {
               icon: "mdi-account-star",
-              task: "Election"
+              task: "Election",
+              link: "/sboelection"
             }
           ],
-          link: "/facts"
+          headericon: "mdi-account-box-outline"
         },
         {
           title: "PN Rules ",
           methods: [
             {
               icon: "mdi-lightbulb-outline",
-              task: "Rules"
+              task: "Rules",
+              link: "/pnrules"
             }
           ],
-          link: "/test"
+          headericon: "mdi-star-outline"
         }
       ]
     };
