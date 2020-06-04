@@ -36,14 +36,6 @@
       </v-tooltip>
       <v-tooltip left>
         <template v-slot:activator="{ on}">
-          <v-btn fab dark small color="indigo" v-on="on" @click="AddTask">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </template>
-        <span>Add Task</span>
-      </v-tooltip>
-      <v-tooltip left>
-        <template v-slot:activator="{ on}">
           <v-btn fab dark small color="orange" v-on="on" @click="GenerateNewTask">
             <v-icon>mdi-shuffle</v-icon>
           </v-btn>
@@ -111,9 +103,7 @@ export default {
     }
   },
   methods: {
-    AddTask() {
-      this.$bus.$emit("show-task-form", true);
-    },
+
     DeleteTask() {
       if (this.deletebtn == false) {
         this.$bus.$emit("clicked-delete-btn", true);

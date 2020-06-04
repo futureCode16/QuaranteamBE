@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div style="padding: 1%; margin-top: 3%;">
     <v-item-group>
+      <h1 class="text-center">Center 1 Tasking</h1>
       <v-container>
         <v-row>
           <v-col v-for="task in tasks" :key="task.tasking" cols="12" md="4">
@@ -42,7 +43,8 @@ export default {
   data() {
     return {
       page: 3,
-      loading: false
+      loading: false,
+      transition: 'fab-transition',
     };
   },
   computed: {
@@ -63,7 +65,9 @@ export default {
       }, 2000);
     });
   },
-  methods: {}
+  methods: {
+   
+  }
 };
 </script>
 

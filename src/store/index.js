@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import http from 'vue-axios'
+// import http from 'vue-axios'
+import axios from 'axios'
 
-Vue.use(Vuex);
+Vue.use(Vuex,axios);
 
 export default new Vuex.Store({
     state: {
@@ -80,6 +81,20 @@ export default new Vuex.Store({
                 ]
             }
         ],
+        centerTasks: [
+            {
+                sTasks: "Kitchen",
+                Difficulty: "Hard",
+                NoOfStudents: 8,
+                Center: "Center 1"
+            },
+            {
+                sTasks: "Front Garden",
+                Difficulty: "Light",
+                NoOfStudents: 5,
+                Center: "Center 2"
+            },
+        ]
     },
     getters: {
         getTasks: state => {
@@ -88,24 +103,25 @@ export default new Vuex.Store({
     },
     mutations: {
         setTasks(state, tasks) {
-            state.tasks = tasks
+            state.centerTasks = tasks
         },
         addTask(state, newTask) {
-            state.tasks.push(newTask)
+            state.centerTasks.push(newTask)
         },
         removeTask(state, task) {
-            state.tasks.forEach(element => {
+            state.centerTasks.forEach(element => {
                 if (task.id == element.id) {
-                    state.tasks.splice(1, task)
+                    state.centerTasks.splice(1, task)
                 }
             })
-        }
+        },
+
     },
     actions: {
         // Getting the new generated task
         GetTasks({ commit }) {
             return new Promise((resolve, reject) => {
-                http.get("url_from_backend/getTasks").then(res => {
+                axios.get("http://172.16.32.15:8000/retrieve_names").then(res => {
                     commit("setTasks", res)
                     resolve()
                 }).catch(err => {
@@ -113,12 +129,15 @@ export default new Vuex.Store({
                 })
             })
         },
-        // Add some new task
+        // Add new task
         AddTask({ commit, task }) {
             return new Promise((resolve, reject) => {
-                http.post("url_from_backend/addTask", task).then(res => {
-                    commit("addTask", res)
-                    resolve()
+                axios.post("http://172.16.32.15:8000/admin/addtasks", task).then(res => {
+                    console.log(res, "response")
+                    if (res.data.status == "success") {
+                        commit("addTask", res)
+                        resolve()
+                    }
                 }).catch(err => {
                     reject(err)
                 })
@@ -127,7 +146,7 @@ export default new Vuex.Store({
         // Remove the task 
         RemoveTask({ commit, task }) {
             return new Promise((resolve, reject) => {
-                http.delete("url_from_backend/deleteTask/:id", task).then(res => {
+                axios.delete("url_from_backend/deleteTask/:id", task).then(res => {
                     commit("removeTask", res)
                     resolve()
                 }).catch(err => {

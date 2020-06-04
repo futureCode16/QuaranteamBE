@@ -2,12 +2,12 @@
   <v-app-bar app color="orange" dark>
     <div class="d-flex align-center">
       <v-img
-      alt="Vuetify Logo"
-      class="shrink mr-2"
-      contain
-      :src="require('@/assets/pn-logo.png')"
-      transition="scale-transition"
-      width="40"
+        alt="Vuetify Logo"
+        class="shrink mr-2"
+        contain
+        :src="require('@/assets/pn-logo.png')"
+        transition="scale-transition"
+        width="40"
       />
       <!-- <v-img
           alt="Vuetify Name"
@@ -21,7 +21,11 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn text v-show="$route.name == 'studenttask'" @click="showTaskForm">
+    <v-btn
+      text
+      v-show="$route.name == 'centertasks'"
+      @click="showTaskForm"
+    >
       <span class="mr-2">Add Tasking</span>
       <v-icon>mdi-plus</v-icon>
     </v-btn>
@@ -38,7 +42,6 @@ export default {
     showTaskForm() {
       this.$bus.$emit("show-task-form", true);
     }
-
   }
 };
 </script>
