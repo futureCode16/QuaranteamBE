@@ -1,5 +1,5 @@
 <template>
-  <div style="padding : 1%; margin-top: 3%;">
+  <div style="padding : 1%; margin-top: 3%;" >
     <v-data-table :headers="headers" :items="CenterTasks" sort-by="location" class="elevation-3">
       <template v-slot:top>
         <v-toolbar flat color="white">
@@ -45,6 +45,35 @@ export default {
       return this.$store.state.centerTasks;
     }
   },
-  methods: {}
+  methods: {
+    deleteItem(item) {
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        })
+        .then(result => {
+          if (result.value) {
+            const index = this.CenterTasks.indexOf(item);
+            setTimeout(() => {
+              this.CenterTasks.splice(index, 1);
+              this.$swal.fire("Deleted!", "Task has been deleted.", "success");
+            }, 1000);
+          }
+        });
+    },
+    editItem(item) {
+      this.$swal.fire("Good job!", "You clicked the button!", "success");
+      // this.editedIndex = this.CenterTasks.indexOf(item);
+      // this.editedItem = Object.assign({}, item);
+      // this.dialog = true;
+      console.log(item);
+    }
+  }
 };
 </script>

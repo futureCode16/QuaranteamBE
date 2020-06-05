@@ -1,58 +1,67 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import http from 'vue-axios'
 import axios from 'axios'
 
-Vue.use(Vuex,axios);
+Vue.use(Vuex, axios);
 
 export default new Vuex.Store({
     state: {
         name: "",
         position: "",
-        tasks: [
+        // Center 2 taskings
+        tasks_center2: [
             {
                 tasking: "Dishwashing",
                 coordinator: "Rangie Laurente",
                 members: [
-                    "Renan Bargaso",
+                    "Aeromel Laure",
+                    "Leonilo Torres",
+                    "Jane Repollo",
+                    "Chilla Jean",
+                    "Joey Destacamento",
                     "Renzy Verano",
-                    "Jan Patrick Tancinco",
-                    "John Louie Bersaluna",
+                    "Maria Lyn",
+                    "Mary Jane Paller",
                 ]
             },
             {
                 tasking: "Kitchen",
-                coordinator: "James Laurente",
+                coordinator: "Jhon Adrian Tigusan",
                 members: [
                     "Renan Bargaso",
-                    "Renzy Verano",
-                    "Jan Patrick Tancinco",
-                    "John Louie Bersaluna"
+                    "Mary Grace Cordoto",
+                    "Jan Kenneth Diansin",
+                    "Jakeniel Erim",
+                    "Ivy Joy",
+                    "Nerissa Sunit",
+                    "John Louie Bersaluna",
                 ]
             },
             {
                 tasking: "Dining",
-                coordinator: "John Laurente",
+                coordinator: "Jan Patrick Tancinco",
                 members: [
-                    "Renan Bargaso",
-                    "Renzy Verano",
-                    "Jan Patrick Tancinco",
-                    "John Louie Bersaluna"
+                    "Christian Gigante",
+                    "Mary Ann Camay",
+                    "Cherry Herrera",
+                    "Marion Jay Balugo",
+                    "Redgie Gravador",
+                    "Lealyn Eulin",
                 ]
             },
             {
                 tasking: "Back Garden",
-                coordinator: "Jay Laurente",
+                coordinator: "Cardo Dalisay",
                 members: [
-                    "Renan Bargaso",
-                    "Renzy Verano",
-                    "Jan Patrick Tancinco",
-                    "John Louie Bersaluna"
+                    "Lola Ritemed",
+                    "Eddie Garcia",
+                    "Gloria Arroyo",
+                    "Rodrigo Duterte"
                 ]
             },
             {
                 tasking: "Front Garden",
-                coordinator: "Jay Laurente",
+                coordinator: "Julius Babao",
                 members: [
                     "Renan Bargaso",
                     "Renzy Verano",
@@ -62,7 +71,7 @@ export default new Vuex.Store({
             },
             {
                 tasking: "Courtyard",
-                coordinator: "Jay Laurente",
+                coordinator: "Chervin Tanilon",
                 members: [
                     "Renan Bargaso",
                     "Renzy Verano",
@@ -72,7 +81,7 @@ export default new Vuex.Store({
             },
             {
                 tasking: "Hallway and Corridor",
-                coordinator: "Jay Laurente",
+                coordinator: "Charo Santos",
                 members: [
                     "Renan Bargaso",
                     "Renzy Verano",
@@ -80,15 +89,150 @@ export default new Vuex.Store({
                     "John Louie Bersaluna"
                 ]
             }
+            ,
+            {
+                tasking: "Window 1",
+                coordinator: "Alexander The Great",
+                members: [
+                    "Renan Bargaso"
+                ]
+            },
+            {
+                tasking: "Window 2",
+                coordinator: "King David II",
+                members: [
+                    "Renan Bargaso"
+                ]
+            },
+            {
+                tasking: "Laundry",
+                coordinator: "Matteo Tax Collector",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                ]
+            },
+            {
+                tasking: "Comlab",
+                coordinator: "King Solomon I",
+                members: [
+                    "Renan Bargaso"
+                ]
+            },
+            {
+                tasking: "Water Jag",
+                coordinator: "Kuya Jay"
+            },
+            {
+                tasking: "Kettle",
+                coordinator: "Kuya Jopax"
+            }
+        ],
+        // Center 1 taskings
+        tasks_center1: [
+            {
+                tasking: "Dishwashing",
+                coordinator: "Rose Mary Goyo",
+                members: [
+                    "Harvey Apparace",
+                    "Sernel Asunto",
+                    "Rhea May Ardiente",
+                    "Sheena Torres",
+                    "Quency Atacador",
+                    "Antonette Biore",
+                    "Jay Ann Carzon",
+                    "Aiza Aniga",
+                ]
+            },
+            {
+                tasking: "Kitchen",
+                coordinator: "Ailyn Albores",
+                members: [
+                    "Kristine Reyes",
+                    "Bea Alonzo",
+                    "Sarah Geronimo",
+                    "Vice Ganda",
+                    "Alex Gonzaga",
+                    "DJ Loonyo",
+                    "Vhong Navarro"
+                ]
+            },
+            {
+                tasking: "Dining",
+                coordinator: "Gerald Afable",
+                members: [
+                    "Billy Crawford",
+                    "Jonalyn Test",
+                    "Gerald Anderson",
+                    "Chang Amy",
+                    "Jhon Hilario",
+                    "Korina Sanchez"
+                ]
+            },
+            {
+                tasking: "Front and Sorroundings",
+                coordinator: "Precy Roxas",
+                members: [
+                    "Black Pink",
+                    "Crazy Kart",
+                    "Mobile Legends",
+                    "Java Script",
+                    "Marvel Super War",
+                    "Captain America"
+                ]
+            },
+            {
+                tasking: "Windows and Stairways",
+                coordinator: "Jennie Joy Tomalon",
+                members: [
+                    "Renan Bargaso",
+                    "Renzy Verano",
+                    "Jan Patrick Tancinco",
+                ]
+            },
+            {
+                tasking: "Laundry",
+                coordinator: "James Reid",
+                members: [
+                    "Justine Bayutas",
+                    "Kaith Chymbe",
+                    "Angelica Joy"
+                ]
+            },
+            {
+                tasking: "Office and Library",
+                coordinator: "Daniel Padilla",
+                members: [
+                    "Cardo Dalisay",
+                    "Juaqin Bordado"
+                ]
+            },
+            {
+                tasking: "Comlab ",
+                coordinator: "Kathryn Bernardo",
+                members: [
+                    "Jurick Baybayanon"
+                ]
+            },
+            {
+                tasking: "Multipurpose",
+                coordinator: "Julia Montes",
+                members: [
+                    "Josehp John"
+                ]
+            }
         ],
         centerTasks: [
             {
+                id: 1,
                 sTasks: "Kitchen",
                 Difficulty: "Hard",
                 NoOfStudents: 8,
                 Center: "Center 1"
             },
             {
+                id: 2,
                 sTasks: "Front Garden",
                 Difficulty: "Light",
                 NoOfStudents: 5,
@@ -97,8 +241,11 @@ export default new Vuex.Store({
         ]
     },
     getters: {
-        getTasks: state => {
-            return state.tasks
+        getTasks_Center1: state => {
+            return state.tasks_center1
+        },
+        getTasks_Center2: state => {
+            return state.tasks_center2
         }
     },
     mutations: {
