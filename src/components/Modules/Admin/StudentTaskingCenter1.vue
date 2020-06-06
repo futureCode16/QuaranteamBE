@@ -31,6 +31,7 @@
         ></v-pagination>
       </div>
     </v-item-group>
+    <EditTask/>
     <AddTask/>
     <Buttons/>
   </div>
@@ -40,6 +41,8 @@
 import TaskingCard from "@/components/Cards/TaskingCard.vue";
 import AddTask from "@/components/Modals/AddTask.vue";
 import Buttons from "@/components/Buttons/FabSpeedDial.vue";
+import EditTask from "@/components/Modals/EditTask.vue";
+
 
 export default {
   name: "studenttasking",
@@ -66,7 +69,8 @@ export default {
   components: {
     TaskingCard,
     AddTask,
-    Buttons
+    Buttons,
+    EditTask
   },
   mounted() {
     this.$bus.$on("shuffle", isShuffle => {
@@ -85,22 +89,6 @@ export default {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
       }
-      // var currentIndex = array.length,
-      //   temporaryValue,
-      //   randomIndex;
-
-      // // While there remain elements to shuffle...
-      // while (0 !== currentIndex) {
-      //   // Pick a remaining element...
-      //   randomIndex = Math.floor(Math.random() * currentIndex);
-      //   currentIndex -= 1;
-
-      //   // And swap it with the current element.
-      //   temporaryValue = array[currentIndex];
-      //   array[currentIndex] = array[randomIndex];
-      //   array[randomIndex] = temporaryValue;
-      // }
-      // return array;
     }
   }
 };

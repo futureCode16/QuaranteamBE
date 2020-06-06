@@ -4,7 +4,15 @@
       <v-card-title>
         {{TaskDetails.tasking}}
         <v-spacer/>
-        <v-btn fab small color="warning" v-show="showEditButton" class="mx-1" id="button">
+        <v-btn
+          fab
+          small
+          color="warning"
+          v-show="showEditButton"
+          class="mx-1"
+          id="button"
+          @click="EditTasking(TaskDetails)"
+        >
           <v-icon small>mdi-pencil</v-icon>
         </v-btn>
         <!-- <v-divider vertical v-show="showDivider"></v-divider> -->
@@ -49,13 +57,18 @@ export default {
     this.$bus.$on("clicked-delete-btn", isClicked => {
       setTimeout(() => {
         this.showDeleteButton = isClicked;
-      }, 1000);
+      }, 500);
     });
     this.$bus.$on("clicked-edit-btn", isClicked => {
       setTimeout(() => {
         this.showEditButton = isClicked;
-      }, 1000);
+      }, 500);
     });
+  },
+  methods: {
+    EditTasking(data) {
+      this.$bus.$emit("edit-task", { data: data, show: true });
+    }
   }
 };
 </script>

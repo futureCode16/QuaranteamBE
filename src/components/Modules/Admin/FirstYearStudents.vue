@@ -9,7 +9,7 @@
       min-height="300"
       transition="fade-transition"
     >
-      <v-item-group multiple v-if="!show">
+      <v-item-group multiple v-if="!isTableView">
         <v-container>
           <v-row>
             <v-col v-for="img in Imgs" :key="img.name" cols="12" md="4">
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       isActive: false,
-      show: false
+      isTableView: false
     };
   },
   components: {
@@ -63,12 +63,12 @@ export default {
   mounted() {
     this.$bus.$on("table-view", show => {
       setTimeout(() => {
-        this.show = show;
+        this.isTableView = show;
       }, 1500);
     });
     this.$bus.$on("account-view", show => {
       setTimeout(() => {
-        this.show = !show;
+        this.isTableView = !show;
       }, 1500);
     });
   },

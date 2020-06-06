@@ -59,6 +59,7 @@ import SuccessfullyAdded from "@/components/Snackbars/SuccessfullyAdded.vue";
 import Alert from "./Alert.vue";
 
 export default {
+  name: "AddTask",
   data() {
     return {
       dialog: false,
