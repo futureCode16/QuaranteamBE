@@ -55,6 +55,22 @@
         <span v-if="!changeView">Table view</span>
         <span v-else>List view</span>
       </v-tooltip>
+      <v-tooltip
+        left
+        v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
+      >
+        <template v-slot:activator="{ on}">
+          <v-btn
+            fab
+            color="orange"
+            small
+            v-on="on"
+          >
+            <v-icon>mdi-chevron-up</v-icon>
+          </v-btn>
+        </template>
+        <span>Go Up</span>
+      </v-tooltip>
       <v-tooltip left>
         <template v-slot:activator="{ on}">
           <v-btn fab dark small v-on="on">
@@ -84,7 +100,8 @@ export default {
     right: true,
     bottom: true,
     left: false,
-    transition: "slide-y-reverse-transition"
+    transition: "slide-y-reverse-transition",
+    enabled: true
   }),
 
   computed: {
