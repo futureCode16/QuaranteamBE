@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 3%; padding: 1%;">
-    <h1 class="text-center">Third Year Students</h1>
+    <h1 class="text-center">Batch 2020</h1>
     <v-lazy
       v-model="isActive"
       :options="{
@@ -9,7 +9,7 @@
       min-height="300"
       transition="fade-transition"
     >
-      <v-item-group multiple v-if="!isTableView" >
+      <v-item-group multiple v-if="!isTableView">
         <v-container>
           <v-row>
             <v-col v-for="img in Imgs" :key="img.name" cols="12" md="4">
@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       isActive: false,
-      isTableView: false,
+      isTableView: false
     };
   },
   components: {

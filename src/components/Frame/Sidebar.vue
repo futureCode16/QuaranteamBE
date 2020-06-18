@@ -63,17 +63,17 @@ export default {
           methods: [
             {
               icon: "mdi-account-circle",
-              task: "1st year Students",
+              task: "Batch 2022",
               link: "/1styrstudents"
             },
             {
               icon: "mdi-account-circle",
-              task: "2nd year Students",
+              task: "Batch 2021",
               link: "/2ndyrstudents"
             },
             {
               icon: "mdi-account-circle",
-              task: "3rd year Students",
+              task: "Batch 2020",
               link: "/3rdyrstudents"
             }
           ],

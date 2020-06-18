@@ -44,7 +44,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="error" @click="Cancel">Cancel</v-btn>
-            <v-btn color="success" @click="AddTask">Done</v-btn>
+            <v-btn color="success" @click="loader = 'loading5'" :loading="loading5" >Done</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -62,6 +62,8 @@ export default {
   name: "AddTask",
   data() {
     return {
+      loading5: false,
+      loader: null,
       dialog: false,
       name_task: "",
       no_student: "",
@@ -84,6 +86,15 @@ export default {
       difficulty: ["Light", "Hard"],
       center: ["Center 1", "Center 2"]
     };
+  },
+  watch: {
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+      setTimeout(() => (this[l] = false), 3000);
+
+      this.loader = null;
+    }
   },
   components: {
     SuccessfullyAdded,
@@ -148,3 +159,42 @@ export default {
   }
 };
 </script>
+
+<style>
+.custom-loader {
+  animation: loader 1s infinite;
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

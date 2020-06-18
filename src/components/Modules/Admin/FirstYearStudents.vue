@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 3%; padding: 1%;">
-    <h1 class="text-center">First Year Students</h1>
+    <h1 class="text-center">Batch 2022</h1>
     <v-lazy
       v-model="isActive"
       :options="{
@@ -12,7 +12,7 @@
       <v-item-group multiple v-if="!isTableView">
         <v-container>
           <v-row>
-            <v-col v-for="img in Imgs" :key="img.name" cols="12" md="4">
+            <v-col v-for="(img, i) in Imgs" :key="i" cols="12" md="4">
               <v-item>
                 <v-card class="d-flex align-center" dark height="300px" @click="showProfile(img)">
                   <v-img
@@ -31,7 +31,7 @@
       </v-item-group>
       <TableView :profile="Imgs" v-else/>
     </v-lazy>
-    <StudentProfile/>
+    <StudentProfile />
     <Buttons/>
   </div>
 </template>

@@ -31,7 +31,6 @@
         ></v-pagination>
       </div>
     </v-item-group>
-    <EditTask/>
     <AddTask/>
     <Buttons/>
   </div>
@@ -41,8 +40,6 @@
 import TaskingCard from "@/components/Cards/TaskingCard.vue";
 import AddTask from "@/components/Modals/AddTask.vue";
 import Buttons from "@/components/Buttons/FabSpeedDial.vue";
-import EditTask from "@/components/Modals/EditTask.vue";
-
 
 export default {
   name: "studenttasking",
@@ -69,8 +66,7 @@ export default {
   components: {
     TaskingCard,
     AddTask,
-    Buttons,
-    EditTask
+    Buttons
   },
   mounted() {
     this.$bus.$on("shuffle", isShuffle => {
