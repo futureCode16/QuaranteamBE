@@ -10,12 +10,14 @@
       :open-on-hover="hover"
       :transition="transition"
     >
+      <!------------------------------------------------------->
       <template v-slot:activator>
         <v-btn v-model="fab" color="blue darken-2" dark fab>
           <v-icon v-if="fab">mdi-chevron-down</v-icon>
           <v-icon v-else>mdi-chevron-up</v-icon>
         </v-btn>
       </template>
+      <!------------------------------------------------------->
       <v-tooltip left v-if="$route.name == 'center1tasks' || $route.name == 'center2tasks' ">
         <template v-slot:activator="{ on }">
           <v-btn fab dark small color="green" @click="EditTask" v-model="edit" v-on="on">
@@ -25,6 +27,7 @@
         </template>
         <span>{{ !edit ? editTooltip : "Cancel Edit"}}</span>
       </v-tooltip>
+      <!------------------------------------------------------->
       <v-tooltip left v-if="$route.name == 'center1tasks' || $route.name == 'center2tasks' ">
         <template v-slot:activator="{ on}">
           <v-btn fab dark small color="red" @click="DeleteTask" v-model="deletebtn" v-on="on">
@@ -34,6 +37,7 @@
         </template>
         <span>{{ !deletebtn ? deleteTooltip : "Cancel Delete"}}</span>
       </v-tooltip>
+      <!------------------------------------------------------->
       <v-tooltip left v-if="$route.name == 'center1tasks' || $route.name == 'center2tasks' ">
         <template v-slot:activator="{ on}">
           <v-btn fab dark small color="orange" v-on="on" @click="GenerateNewTask">
@@ -42,6 +46,7 @@
         </template>
         <span>Generate new task</span>
       </v-tooltip>
+      <!------------------------------------------------------->
       <v-tooltip
         left
         v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
@@ -55,37 +60,49 @@
         <span v-if="!changeView">Table view</span>
         <span v-else>List view</span>
       </v-tooltip>
+      <!------------------------------------------------------->
       <v-tooltip
         left
         v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
       >
         <template v-slot:activator="{ on}">
-          <v-btn
-            fab
-            color="orange"
-            small
-            v-on="on"
-          >
+          <v-btn fab color="orange" small v-on="on" id="upBtn" @click="topFunction">
             <v-icon>mdi-chevron-up</v-icon>
           </v-btn>
         </template>
         <span>Go Up</span>
       </v-tooltip>
+      <!------------------------------------------------------->
       <v-tooltip left>
         <template v-slot:activator="{ on}">
-          <v-btn fab dark small v-on="on">
+          <div
+            v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
+          >
+            <v-btn fab dark small v-on="on" @click="onCsvFileUpload" :loading="isSelecting">
+              <v-icon>mdi-upload</v-icon>
+            </v-btn>
+            <input ref="uploader" class="d-none" type="file" accept="*" @change="onFileChanged">
+          </div>
+          <v-btn fab dark small v-on="on" v-else>
             <v-icon>mdi-printer</v-icon>
           </v-btn>
         </template>
-        <span>Print tasking</span>
+        <span
+          v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
+        >Upload Master List</span>
+        <span v-else>Print tasking</span>
       </v-tooltip>
+      <!------------------------------------------------------->
     </v-speed-dial>
   </div>
 </template>
 
 <script>
+
 export default {
   data: () => ({
+    csv_File: null,
+    isSelecting: false,
     direction: "top",
     editTooltip: "Edit Task",
     deleteTooltip: "Delete Task",
@@ -103,7 +120,6 @@ export default {
     transition: "slide-y-reverse-transition",
     enabled: true
   }),
-
   computed: {
     activeFab() {
       switch (this.tabs) {
@@ -134,6 +150,21 @@ export default {
     }
   },
   methods: {
+    scrollFunction() {
+      var mybutton = document.getElementById("upBtn");
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    },
+    topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    },
     DeleteTask() {
       if (this.deletebtn == false) {
         this.$bus.$emit("clicked-delete-btn", true);
@@ -163,6 +194,52 @@ export default {
         this.$bus.$emit("account-view", true);
         this.changeView = false;
       }
+    },
+    onFileChanged(e) {
+      this.csv_File = e.target.files[0];
+      if (this.csv_File.name.split(".").pop() != "csv") {
+        // to check if the file to be upload is .csv
+        this.$swal.fire(
+          `Invalid file ${this.csv_File.name}`,
+          "Must .csv file extension.",
+          "error"
+        );
+      } else {
+        console.log(this.csv_File, " Selected csv file");
+        this.$swal
+          .fire({
+            title: "Are you sure?",
+            text: `File to upload: ${this.csv_File.name}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, upload it!"
+          })
+          .then(result => {
+            if (result.value) {
+              setTimeout(() => {
+                this.$swal.fire(
+                  "Uploaded",
+                  "File has been uploaded.",
+                  "success"
+                );
+              }, 1000);
+            }
+          });
+      }
+    },
+    onCsvFileUpload() {
+      this.isSelecting = true;
+      window.addEventListener(
+        "focus",
+        () => {
+          this.isSelecting = false;
+        },
+        { once: true }
+      );
+
+      this.$refs.uploader.click();
     }
   }
 };

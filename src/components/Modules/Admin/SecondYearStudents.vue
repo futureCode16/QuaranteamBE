@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 3%; padding: 1%;">
-    <h1 class="text-center">Seond Year Students</h1>
+    <h1 class="text-center">Batch 2021</h1>
     <v-lazy
       v-model="isActive"
       :options="{

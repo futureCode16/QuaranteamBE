@@ -9,9 +9,10 @@
         </v-toolbar>
         <v-text-field
           v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
+          prepend-inner-icon="mdi-magnify"
+          label="Search student"
           single-line
+          solo
           hide-details
         ></v-text-field>
       </v-card-title>
@@ -21,10 +22,26 @@
         sort-by="location"
         class="elevation-3"
         :search="search"
-      ></v-data-table>
+      >
+        <template v-slot:item.sex="{ item }">
+          <v-chip :color="getColor(item.sex)" dark>{{ item.sex }}</v-chip>
+        </template>
+        <template v-slot:item.class_number="{ item }">
+          <v-chip color="success">{{ item.class_number }}</v-chip>
+        </template>
+        <template v-slot:item.actions="{ item }">
+          <v-icon class="mr-2" color="indigo" @click="viewProfile(item)">mdi-eye</v-icon>
+        </template>
+      </v-data-table>
     </v-card>
   </div>
 </template>
+
+<style scoped>
+.v-text-field {
+  width: 10px;
+}
+</style>
 
 <script>
 export default {
@@ -40,14 +57,21 @@ export default {
     dialog: false,
     headers: [
       {
+        text: "Class number",
+        align: "center",
+        value: "class_number"
+      },
+      {
         text: "Last name",
-        align: "start",
-        value: "lastname"
+        value: "lastname",
+        sortable: false
       },
       { text: "First name", value: "firstname", sortable: false },
+      { text: "Middle name", value: "middlename", sortable: false },
       { text: "Age", value: "age", sortable: false },
-      { text: "Sex", value: "sex", sortable: false },
-      { text: "Address", value: "address", sortable: false }
+      { text: "Sex", value: "sex", sortable: false, align: "center" },
+      { text: "Address", value: "address", sortable: false },
+      { text: "Actions", value: "actions", sortable: false, align: "center" }
     ]
   }),
   computed: {
@@ -62,6 +86,15 @@ export default {
       this.tableText = "Batch 2021";
     } else if (this.$route.name == "3rdyrstudents") {
       this.tableText = "Batch 2020";
+    }
+  },
+  methods: {
+    getColor(sex) {
+      if (sex == "Male") return "blue";
+      else if (sex == "Female") return "orange";
+    },
+    viewProfile(item) {
+      this.$bus.$emit("show-profile", item);
     }
   }
 };
