@@ -8,6 +8,9 @@ import VueAxios from 'vue-axios'
 import axios from 'axios'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import VueDraggable from 'vue-draggable'
+
+Vue.use(VueDraggable)
 
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)

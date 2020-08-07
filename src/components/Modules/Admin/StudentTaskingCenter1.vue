@@ -7,7 +7,7 @@
       >{{loading ? "Shuffling task..." : text}}</h1>
       <v-container>
         <v-row>
-          <v-col v-for="task in tasks" :key="task.tasking" cols="12" md="4">
+          <v-col v-for="(task, i) in tasks" :key="i" cols="12" md="4">
             <v-item>
               <v-skeleton-loader
                 :loading="loading"
@@ -15,21 +15,12 @@
                 height="200"
                 type="card"
               >
-                <TaskingCard :TaskDetails="task" v-show="!loading"></TaskingCard>
+                <TaskingCard :TaskDetails="task" v-show="!loading" :id="i" ></TaskingCard>
               </v-skeleton-loader>
             </v-item>
           </v-col>
         </v-row>
       </v-container>
-      <div class="text-center" style="padding: 2%;">
-        <v-pagination
-          v-model="page"
-          :length="4"
-          prev-icon="mdi-menu-left"
-          next-icon="mdi-menu-right"
-          v-show="!loading"
-        ></v-pagination>
-      </div>
     </v-item-group>
     <AddTask/>
     <Buttons/>
@@ -69,6 +60,7 @@ export default {
     Buttons
   },
   mounted() {
+    console.log(this.tasks, " this task" )
     this.$bus.$on("shuffle", isShuffle => {
       this.loading = isShuffle;
       setTimeout(() => {
@@ -89,4 +81,5 @@ export default {
   }
 };
 </script>
+
 

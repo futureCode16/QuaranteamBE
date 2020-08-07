@@ -21,15 +21,6 @@
           </v-col>
         </v-row>
       </v-container>
-      <div class="text-center" style="padding: 2%;">
-        <v-pagination
-          v-model="page"
-          :length="4"
-          prev-icon="mdi-menu-left"
-          next-icon="mdi-menu-right"
-          v-show="!loading"
-        ></v-pagination>
-      </div>
     </v-item-group>
     <AddTask/>
     <Buttons/>

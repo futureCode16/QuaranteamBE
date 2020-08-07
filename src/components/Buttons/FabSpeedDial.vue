@@ -12,7 +12,16 @@
     >
       <!------------------------------------------------------->
       <template v-slot:activator>
-        <v-btn v-model="fab" color="blue darken-2" dark fab>
+        <v-btn
+          v-if="$route.name == 'centertasks'"
+          @click="showTaskForm"
+          color="blue darken-2"
+          dark
+          fab
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+        <v-btn v-else v-model="fab" color="blue darken-2" dark fab>
           <v-icon v-if="fab">mdi-chevron-down</v-icon>
           <v-icon v-else>mdi-chevron-up</v-icon>
         </v-btn>
@@ -83,14 +92,14 @@
             </v-btn>
             <input ref="uploader" class="d-none" type="file" accept="*" @change="onFileChanged">
           </div>
-          <v-btn fab dark small v-on="on" v-else>
-            <v-icon>mdi-printer</v-icon>
+          <v-btn fab dark small v-on="on" v-else v-show="$route.name != 'centertasks'">
+            <v-icon>mdi-download</v-icon>
           </v-btn>
         </template>
         <span
           v-if="$route.name == '1styrstudents' || $route.name == '2ndyrstudents' || $route.name == '3rdyrstudents'"
         >Upload Master List</span>
-        <span v-else>Print tasking</span>
+        <span v-else>Download tasking</span>
       </v-tooltip>
       <!------------------------------------------------------->
     </v-speed-dial>
@@ -98,7 +107,6 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     csv_File: null,
@@ -240,6 +248,9 @@ export default {
       );
 
       this.$refs.uploader.click();
+    },
+    showTaskForm() {
+      this.$bus.$emit("show-task-form", true);
     }
   }
 };

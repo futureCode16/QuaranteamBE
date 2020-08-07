@@ -1,5 +1,5 @@
 <template>
-  <div style="padding : 1%; margin-top: 3%;" >
+  <div style="padding : 1%; margin-top: 3%;">
     <v-data-table :headers="headers" :items="CenterTasks" sort-by="location" class="elevation-3">
       <template v-slot:top>
         <v-toolbar flat color="white">
@@ -14,11 +14,13 @@
       </template>
     </v-data-table>
     <AddTask/>
+    <Buttons/>
   </div>
 </template>
 
 <script>
 import AddTask from "@/components/Modals/AddTask.vue";
+import Buttons from "@/components/Buttons/FabSpeedDial.vue";
 
 export default {
   name: "TaskList",
@@ -38,7 +40,8 @@ export default {
     ]
   }),
   components: {
-    AddTask
+    AddTask,
+    Buttons
   },
   computed: {
     CenterTasks() {
@@ -73,7 +76,8 @@ export default {
       // this.editedItem = Object.assign({}, item);
       // this.dialog = true;
       console.log(item);
-    }
+    },
+    
   }
 };
 </script>
